@@ -1,0 +1,14 @@
+{
+	"files": [
+		{
+			"path": "src/backend/main/main.c",
+			"bookmarks": [
+				{
+					"line": 57,
+					"column": 28,
+					"label": "main.c main"
+				}
+			]
+		}
+	]
+}
