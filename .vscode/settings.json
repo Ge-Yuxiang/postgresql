@@ -1,0 +1,95 @@
+{
+    "cmake.copyCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
+    "cmake.additionalCompilerSearchDirs": [
+        "/media/skylinux/sky_soft/gun_tools/bin"
+    ],
+    "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": true,
+    "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyFunction": true,
+    "files.associations": {
+        "bootstrap.h": "c",
+        "pqsignal.h": "c",
+        "postgres.h": "c"
+    },
+    "workbench.editor.enablePreview": false, //控制编辑器预览功能
+    "editor.renderWhitespace": "boundary",
+
+    "cmake.sourceDirectory": "${workspaceFolder}/src",
+    "cmake.additionalKits": [
+        "${workspaceFolder}/.vscode/tool_kits.json"
+    ],
+    "cmake.buildDirectory": "${workspaceFolder}/cmake_build",
+    "cmake.configureOnOpen": false,
+    "cmake.configureSettings": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/cmake_build",
+        "CYNOS_BUILD_IDE": "vscode",
+        "CMAKE_BUILD_NCORES": "4"
+    },
+    "cmake.buildBeforeRun": false,
+    "cmake.buildTask": true,
+    "cmake.cmakePath": "/usr/bin/cmake",
+
+    "C_Cpp.formatting": "clangFormat",
+    "C_Cpp.clang_format_fallbackStyle": "BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 2, TabWidth: 2, BreakBeforeBraces: Allman, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4",
+    "C_Cpp.clang_format_path": "${workspaceFolder}/.vscode/.clang-format",
+    "C_Cpp.clang_format_style": "file",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.cStandard": "c99",
+    "C_Cpp.dimInactiveRegions": true,
+    "C_Cpp.files.exclude": {
+        "**/.vscode": true,
+        "${workspaceFolder}/build": true,
+        "${workspaceFolder}/config": true,
+        "${workspaceFolder}/contrib": true,
+        "${workspaceFolder}/doc": true,
+        "${workspaceFolder}/cynos_store/dependencies/spdk/build": true,
+      },
+    "editor.fontSize": 13,
+    "files.autoGuessEncoding": false,
+    "search.exclude": {
+        "**/build": true,
+        "**/config": true,
+        "**/contrib": true,
+        "**/doc": true,
+    },
+
+    "bookmarks.navigateThroughAllFiles": true,
+    "bookmarks.saveBookmarksInProject": true,
+    "bookmarks.sideBar.expanded": true,
+    "bookmarks.useWorkaroundForFormatters": true,
+
+    "search.collapseResults": "auto",
+    "search.sortOrder": "fileNames",
+    "search.useGlobalIgnoreFiles": true,
+    "search.followSymlinks": true,
+
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+
+    "cSpell.enabled": false,
+    "cSpell.allowCompoundWords": false,
+    "cSpell.language": "en",
+    "cSpell.maxNumberOfProblems": 10000,
+    "cSpell.maxDuplicateProblems": 2,
+    "cSpell.checkLimit": 5000,
+    "cSpell.enabledLanguageIds": [
+        "c", "cpp", "json", "python", "h", "hpp", "cc", "hh"
+    ],
+    "cSpell.ignorePaths": [
+        ".git",
+        ".vscode",
+        "logs",
+        "gcda_files",
+        "dev"
+    ],
+    "cSpell.words": [],
+
+    "git.enabled": true,
+    "git.autorefresh": true,
+    "git.enableStatusBarSync": true,
+    "debug.showBreakpointsInOverviewRuler": true,
+    "C_Cpp.errorSquiggles": "disabled",
+    "makefile.configureOnOpen": false
+}

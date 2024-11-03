@@ -1,0 +1,9 @@
+[
+  {
+    "name": "tool_kits",
+    "compilers": {
+      "C": "/media/skylinux/sky_soft/gun_tools/bin/gcc",
+      "CXX": "/media/skylinux/sky_soft/gun_tools/bin/g++"
+    }
+  }
+]

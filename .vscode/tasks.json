@@ -1,0 +1,67 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        // {
+        //     "label": "Shut down postgresql",
+        //     "type": "shell",
+        //     "command": "expect shut_down_cynos_server.exp",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/.vscode/task_script"
+        //     },
+        //     "problemMatcher": []
+        // },
+        // {
+        //     "label": "Power up start postgresql",
+        //     "type": "shell",
+        //     "command": "expect power_up_start_cynos_server.exp",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/.vscode/task_script"
+        //     },
+        //     "problemMatcher": []
+        // },
+        {
+            "label": "Find file",
+            "type": "shell",
+            "command": "./sky_shell.sh find",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/.vscode/task_script"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Config attach pid",
+            "type": "shell",
+            "command": "python config_attach_pid.py",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/.vscode/task_script"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "show cynos process",
+            "type": "shell",
+            "command": "./sky_shell.sh show",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/.vscode/task_script"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "attach postgresql gdb",
+            "type": "shell",
+            "command": "./attach_gdb.sh",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/.vscode/task_script"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

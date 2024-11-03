@@ -1,0 +1,5 @@
+build
+compile_commands.json
+logfile
+.vscode/compile_commands.json
+.vscode/C_Cpp_Dadabase_File*
