@@ -47,10 +47,10 @@
     "editor.fontSize": 13,
     "files.autoGuessEncoding": false,
     "search.exclude": {
-        "**/build": true,
-        "**/config": true,
-        "**/contrib": true,
-        "**/doc": true,
+        "**/*.o": true,
+        "**/*.a": true,
+        "**/*.so": true,
+        "**/*.out": true,
     },
 
     "bookmarks.navigateThroughAllFiles": true,
@@ -91,5 +91,10 @@
     "git.enableStatusBarSync": true,
     "debug.showBreakpointsInOverviewRuler": true,
     "C_Cpp.errorSquiggles": "disabled",
-    "makefile.configureOnOpen": false
+    "makefile.configureOnOpen": false,
+    "files.exclude": {
+        "**/*.a": true,
+        "**/*.o": true,
+        "**/*.so": true
+    }
 }
