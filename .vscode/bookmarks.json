@@ -6,7 +6,47 @@
 				{
 					"line": 57,
 					"column": 28,
-					"label": "main.c main"
+					"label": "main postgresql主函数"
+				}
+			]
+		},
+		{
+			"path": "src/backend/bootstrap/bootstrap.c",
+			"bookmarks": [
+				{
+					"line": 198,
+					"column": 58,
+					"label": "BootstrapModeMain 引导程序主进程"
+				}
+			]
+		},
+		{
+			"path": "src/backend/tcop/postgres.c",
+			"bookmarks": [
+				{
+					"line": 4127,
+					"column": 46,
+					"label": "PostgresSingleUserMain 单用户模式主函数"
+				}
+			]
+		},
+		{
+			"path": "src/backend/postmaster/postmaster.c",
+			"bookmarks": [
+				{
+					"line": 488,
+					"column": 38,
+					"label": "PostmasterMain 守护进程主函数"
+				}
+			]
+		},
+		{
+			"path": "src/backend/postmaster/launch_backend.c",
+			"bookmarks": [
+				{
+					"line": 582,
+					"column": 41,
+					"label": "SubPostmasterMain windows平台守护进程主函数"
 				}
 			]
 		}

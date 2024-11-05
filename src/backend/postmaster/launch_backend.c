@@ -568,14 +568,16 @@ retry:
 #endif							/* WIN32 */
 
 /*
- * SubPostmasterMain -- Get the fork/exec'd process into a state equivalent
- *			to what it would be if we'd simply forked on Unix, and then
- *			dispatch to the appropriate place.
+ * SubPostmasterMain -- 使 fork/exec 的进程进入一个等同于在 Unix 上简单 fork 的状态，然后
+ * 分发到适当的位置。
  *
- * The first two command line arguments are expected to be "--forkchild=<name>",
- * where <name> indicates which postmaster child we are to become, and
- * the name of a variables file that we can read to load data that would
- * have been inherited by fork() on Unix.
+ * 命令行的前两个参数预期为 "--forkchild=<name>"，其中 <name> 表示我们要变成哪个主控进程子进程，
+ * 以及一个变量文件的名称，我们可以读取该文件以加载在 Unix 上通过 fork() 继承的数据。
+ * 
+ * SubPostmasterMain 是 PostgreSQL 中的一个重要函数，用于在 Windows 环境下模拟 Unix 系统中的 fork 行为。
+ * 由于 Windows 没有 fork 系统调用，PostgreSQL 需要通过 fork 和 exec 的组合来实现类似的功能。
+ * SubPostmasterMain 的主要任务是将子进程（由 fork 生成的进程）初始化到一个类似于 Unix 系统中 fork 后的状态，
+ * 然后根据需要派发到相应的处理逻辑。
  */
 void
 SubPostmasterMain(int argc, char *argv[])

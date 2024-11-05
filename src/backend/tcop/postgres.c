@@ -4118,12 +4118,11 @@ process_postgres_switches(int argc, char *argv[], GucContext ctx,
 
 /*
  * PostgresSingleUserMain
- *     Entry point for single user mode. argc/argv are the command line
- *     arguments to be used.
+ * 单用户模式的入口点。argc/argv 是要使用的命令行参数。
  *
- * Performs single user specific setup then calls PostgresMain() to actually
- * process queries. Single user mode specific setup should go here, rather
- * than PostgresMain() or InitPostgres() when reasonably possible.
+ * 执行特定于单用户模式的设置，然后调用 PostgresMain() 实际处理查询。只要可能，特定于单用户模式的设置应放在这里，而不是 PostgresMain() 或 InitPostgres() 中。
+ * 
+ * 单用户模式主要用于数据库的维护和修复操作，因为它允许管理员在没有其他客户端连接的情况下直接与数据库交互。这种模式下，PostgreSQL 会以最小化的配置启动，避免了多用户环境中的复杂性
  */
 void
 PostgresSingleUserMain(int argc, char *argv[],

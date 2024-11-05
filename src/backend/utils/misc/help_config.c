@@ -41,7 +41,11 @@ typedef union
 static void printMixedStruct(mixedStruct *structToPrint);
 static bool displayStruct(mixedStruct *structToDisplay);
 
-
+/*
+* "GUC" 是 PostgreSQL 数据库中的一个术语，代表 "Grand Unified Configuration"。
+* GUC 参数是 PostgreSQL 中用于配置服务器行为的各种设置项。这些参数可以控制数据库的行为，
+* 包括连接管理、资源使用、日志记录、查询优化等方面。这些参数通常在 postgresql.conf 文件中设置
+*/
 void
 GucInfoMain(void)
 {

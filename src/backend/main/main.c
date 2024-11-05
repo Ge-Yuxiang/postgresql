@@ -52,7 +52,7 @@ static void check_root(const char *progname);
 
 
 /*
- * Any Postgres server process begins execution here.
+ * 任何 PostgreSQL 服务器进程都从这里开始执行。
  */
 int
 main(int argc, char *argv[])
@@ -62,106 +62,90 @@ main(int argc, char *argv[])
 	reached_main = true;
 
 	/*
-	 * If supported on the current platform, set up a handler to be called if
-	 * the backend/postmaster crashes with a fatal signal or exception.
+	 * 如果当前平台支持，设置一个捕获器，如果backend或postmaster进程因致命信号或异常而崩溃时会被调用。
 	 */
 #if defined(WIN32)
-	pgwin32_install_crashdump_handler();
+	pgwin32_install_crashdump_handler(); // 捕获 postmaster 的异常
 #endif
 
-	progname = get_progname(argv[0]);
+	progname = get_progname(argv[0]); // 提取程序实际调用名
 
 	/*
-	 * Platform-specific startup hacks
+	 * 根据平台启动相应的特殊操作
 	 */
-	startup_hacks(progname);
+	startup_hacks(progname); // 根据平台启动相应的特殊操作
 
 	/*
-	 * Remember the physical location of the initially given argv[] array for
-	 * possible use by ps display.  On some platforms, the argv[] storage must
-	 * be overwritten in order to set the process title for ps. In such cases
-	 * save_ps_display_args makes and returns a new copy of the argv[] array.
+	 * 保存原始的 argc/argv 值, 以防止它被后续的 ps_display 操作破坏。在这种情况下，save_ps_display_args
+	 * 会制作并返回 argv[] 数组的新副本。
 	 *
-	 * save_ps_display_args may also move the environment strings to make
-	 * extra room. Therefore this should be done as early as possible during
-	 * startup, to avoid entanglements with code that might save a getenv()
-	 * result pointer.
+	 * save_ps_display_args 还可能移动环境字符串以腾出额外的空间。因此，这应该在启动时
+	 * 尽早完成，以避免与可能会保存 getenv() 结果指针的代码产生纠缠。
 	 */
-	argv = save_ps_display_args(argc, argv);
+	argv = save_ps_display_args(argc, argv); // 保存原始的 argc/argv 值, 以防止它被后续的 ps_display 操作破坏
 
 	/*
-	 * Fire up essential subsystems: error and memory management
+	 * 启动基本子系统：error and memory管理
 	 *
-	 * Code after this point is allowed to use elog/ereport, though
-	 * localization of messages may not work right away, and messages won't go
-	 * anywhere but stderr until GUC settings get loaded.
+	 * 从此点之后的代码允许使用 elog/ereport，尽管消息的本地化可能不会立即生效，
+	 * 而且在加载 GUC 设置之前，消息只会输出到 stderr。
 	 */
 	MemoryContextInit();
 
 	/*
-	 * Set up locale information
+	 * 设置区域信息
 	 */
 	set_pglocale_pgservice(argv[0], PG_TEXTDOMAIN("postgres"));
 
 	/*
-	 * In the postmaster, absorb the environment values for LC_COLLATE and
-	 * LC_CTYPE.  Individual backends will change these later to settings
-	 * taken from pg_database, but the postmaster cannot do that.  If we leave
-	 * these set to "C" then message localization might not work well in the
-	 * postmaster.
+	 * 在主控进程中，吸收环境值 LC_COLLATE 和 LC_CTYPE。单个后端稍后会根据 pg_database 更改这些设置，
+	 * 但主控进程不能这样做。如果我们让这些设置为 "C"，那么主控进程中的消息本地化可能不会很好。
+	 * LC_COLLATE 和 LC_CTYPE 是 C 语言环境变量的一部分，用于定义程序的行为
+	 * LC_COLLATE 控制字符串排序和比较的方式
+	 * LC_CTYPE 定义了字符分类和转换规则
 	 */
 	init_locale("LC_COLLATE", LC_COLLATE, "");
 	init_locale("LC_CTYPE", LC_CTYPE, "");
 
 	/*
-	 * LC_MESSAGES will get set later during GUC option processing, but we set
-	 * it here to allow startup error messages to be localized.
+	 * LC_MESSAGES 将在 GUC 选项处理期间稍后设置，但我们在这里设置它以使启动错误消息能够本地化。
 	 */
 #ifdef LC_MESSAGES
 	init_locale("LC_MESSAGES", LC_MESSAGES, "");
 #endif
 
 	/*
-	 * We keep these set to "C" always, except transiently in pg_locale.c; see
-	 * that file for explanations.
+	 * 我们总是将这些设置为 "C"，除了在 pg_locale.c 中临时更改；请参阅该文件以获取解释。
 	 */
 	init_locale("LC_MONETARY", LC_MONETARY, "C");
 	init_locale("LC_NUMERIC", LC_NUMERIC, "C");
 	init_locale("LC_TIME", LC_TIME, "C");
 
 	/*
-	 * Now that we have absorbed as much as we wish to from the locale
-	 * environment, remove any LC_ALL setting, so that the environment
-	 * variables installed by pg_perm_setlocale have force.
+	 * 现在我们已经尽可能地从区域环境吸收了信息，移除任何 LC_ALL 设置，以便由 pg_perm_setlocale 安装的环境变量有效。
 	 */
 	unsetenv("LC_ALL");
 
 	/*
-	 * Catch standard options before doing much else, in particular before we
-	 * insist on not being root.
+	 * 在做其他事情之前捕获标准选项，特别是我们在坚持不是以 root 用户身份运行之前。
 	 */
 	if (argc > 1)
 	{
 		if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-?") == 0)
 		{
-			help(progname);
+			help(progname); //显示 pg_ctl --help的内容
 			exit(0);
 		}
 		if (strcmp(argv[1], "--version") == 0 || strcmp(argv[1], "-V") == 0)
 		{
-			fputs(PG_BACKEND_VERSIONSTR, stdout);
+			fputs(PG_BACKEND_VERSIONSTR, stdout); //显示 pg_ctl --version的内容
 			exit(0);
 		}
 
 		/*
-		 * In addition to the above, we allow "--describe-config" and "-C var"
-		 * to be called by root.  This is reasonably safe since these are
-		 * read-only activities.  The -C case is important because pg_ctl may
-		 * try to invoke it while still holding administrator privileges on
-		 * Windows.  Note that while -C can normally be in any argv position,
-		 * if you want to bypass the root check you must put it first.  This
-		 * reduces the risk that we might misinterpret some other mode's -C
-		 * switch as being the postmaster/postgres one.
+		 * 除了上述选项之外，我们还允许以 root 用户身份调用 "--describe-config" 和 "-C var"。
+		 * 这是相对安全的，因为这些都是只读活动。-C 的情况很重要，因为 pg_ctl 可能在仍然持有管理员权限的情况下尝试调用它。
+		 * 注意，虽然 -C 通常可以在任何 argv 位置，如果你想绕过 root 检查，必须将其放在第一位。这减少了我们可能误将其他模式的 -C 开关解释为主控/PostgreSQL 的风险。
 		 */
 		if (strcmp(argv[1], "--describe-config") == 0)
 			do_check_root = false;
@@ -170,32 +154,31 @@ main(int argc, char *argv[])
 	}
 
 	/*
-	 * Make sure we are not running as root, unless it's safe for the selected
-	 * option.
+	 * 确保我们不是以 root 用户身份运行，除非对于所选选项来说是安全的。
 	 */
 	if (do_check_root)
 		check_root(progname);
 
 	/*
-	 * Dispatch to one of various subprograms depending on first argument.
+	 * 根据第一个参数调度到各种子程序之一。
 	 */
 
 	if (argc > 1 && strcmp(argv[1], "--check") == 0)
 		BootstrapModeMain(argc, argv, true);
 	else if (argc > 1 && strcmp(argv[1], "--boot") == 0)
-		BootstrapModeMain(argc, argv, false);
+		BootstrapModeMain(argc, argv, false);   // 启动引导程序
 #ifdef EXEC_BACKEND
 	else if (argc > 1 && strncmp(argv[1], "--forkchild", 11) == 0)
 		SubPostmasterMain(argc, argv);
 #endif
 	else if (argc > 1 && strcmp(argv[1], "--describe-config") == 0)
-		GucInfoMain();
+		GucInfoMain(); //sky 打印postgresql.conf的配置参数
 	else if (argc > 1 && strcmp(argv[1], "--single") == 0)
 		PostgresSingleUserMain(argc, argv,
-							   strdup(get_user_name_or_exit(progname)));
+							   strdup(get_user_name_or_exit(progname))); //以单用户模式启动
 	else
-		PostmasterMain(argc, argv);
-	/* the functions above should not return */
+		PostmasterMain(argc, argv); // 启动守护进程
+	/* 上述函数不应该返回 */
 	abort();
 }
 
