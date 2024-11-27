@@ -6,7 +6,7 @@
 				{
 					"line": 57,
 					"column": 28,
-					"label": "main postgresql主函数"
+					"label": "系统控制器 main postgresql主函数"
 				}
 			]
 		},
@@ -16,7 +16,7 @@
 				{
 					"line": 198,
 					"column": 58,
-					"label": "BootstrapModeMain 引导程序主进程"
+					"label": "系统控制器 BootstrapModeMain 引导程序主进程"
 				}
 			]
 		},
@@ -26,7 +26,7 @@
 				{
 					"line": 4127,
 					"column": 46,
-					"label": "PostgresSingleUserMain 单用户模式主函数"
+					"label": "系统控制器 PostgresSingleUserMain 单用户模式主函数"
 				}
 			]
 		},
@@ -36,7 +36,7 @@
 				{
 					"line": 488,
 					"column": 38,
-					"label": "PostmasterMain 守护进程主函数"
+					"label": "系统控制器 PostmasterMain 守护进程主函数"
 				}
 			]
 		},
@@ -46,7 +46,97 @@
 				{
 					"line": 582,
 					"column": 41,
-					"label": "SubPostmasterMain windows平台守护进程主函数"
+					"label": "系统控制器 SubPostmasterMain windows平台守护进程主函数"
+				}
+			]
+		},
+		{
+			"path": "src/backend/access/transam/xact.c",
+			"bookmarks": [
+				{
+					"line": 2994,
+					"column": 29,
+					"label": "事务管理器 StartTransactionCommand 事务管理器入口"
+				}
+			]
+		},
+		{
+			"path": "src/backend/access/transam/xlog.c",
+			"bookmarks": [
+				{
+					"line": 5004,
+					"column": 19,
+					"label": "日志管理器 BootStrapXLOG WAL日志管理系统启动"
+				}
+			]
+		},
+		{
+			"path": "src/backend/access/heap/heapam_visibility.c",
+			"bookmarks": [
+				{
+					"line": 959,
+					"column": 22,
+					"label": "并发控制 HeapTupleSatisfiesMVCC"
+				}
+			]
+		},
+		{
+			"path": "src/backend/storage/lmgr/lmgr.c",
+			"bookmarks": [
+				{
+					"line": 70,
+					"column": 20,
+					"label": "锁管理器 RelationInitLockInfo 初始化表锁"
+				}
+			]
+		},
+		{
+			"path": "src/include/access/amapi.h",
+			"bookmarks": [
+				{
+					"line": 266,
+					"column": 26,
+					"label": "索引管理器 ambuild 创建索引的抽象接口"
+				}
+			]
+		},
+		{
+			"path": "src/backend/utils/mmgr/mcxt.c",
+			"bookmarks": [
+				{
+					"line": 338,
+					"column": 23,
+					"label": "内存管理系统 MemoryContextInit 内存上下文初始化"
+				}
+			]
+		},
+		{
+			"path": "src/backend/utils/cache/syscache.c",
+			"bookmarks": [
+				{
+					"line": 106,
+					"column": 22,
+					"label": "快速缓存管理 InitCatalogCache 初始化SysCache"
+				}
+			]
+		},
+		{
+			"path": "src/backend/storage/buffer/buf_init.c",
+			"bookmarks": [
+				{
+					"line": 67,
+					"column": 14,
+					"label": "缓冲区管理器 InitBufferPool 初始化缓冲区"
+				}
+			]
+		},
+		{
+			"path": "src/backend/storage/smgr/smgr.c",
+			"bookmarks": [
+				{
+					"line": 153,
+					"column": 14,
+					"label": "存储管理器 smgrinit 初始化存储管理器"
 				}
 			]
 		}
