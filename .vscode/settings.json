@@ -10,7 +10,8 @@
         "pqsignal.h": "c",
         "postgres.h": "c",
         "bufmgr.h": "c",
-        "tablespace.h": "c"
+        "tablespace.h": "c",
+        "typeinfo": "cpp"
     },
     "workbench.editor.enablePreview": false, //控制编辑器预览功能
     "editor.renderWhitespace": "boundary",
@@ -98,5 +99,27 @@
         "**/*.a": true,
         "**/*.o": true,
         "**/*.so": true
-    }
+    },
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "192.168.10.220",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "postgres",
+            "database": "postgres",
+            "username": "postgres",
+            "password": "Aa100325"
+        },
+        {
+            "previewLimit": 50,
+            "server": "192.168.10.220",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "test",
+            "database": "test",
+            "username": "postgres",
+            "password": "Aa100325"
+        }
+    ]
 }

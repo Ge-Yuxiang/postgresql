@@ -139,6 +139,56 @@
 					"label": "存储管理器 smgrinit 初始化存储管理器"
 				}
 			]
+		},
+		{
+			"path": "src/include/catalog/pg_database.h",
+			"bookmarks": [
+				{
+					"line": 28,
+					"column": 25,
+					"label": "系统表 FormData_pg_database 系统表的结构体定义pg_xxx.h各代表不同的系统表"
+				}
+			]
+		},
+		{
+			"path": "src/include/catalog/genbki.h",
+			"bookmarks": [
+				{
+					"line": 26,
+					"column": 27,
+					"label": "系统表 BKI_ 定义了genbki.pl在读取pg_xxx.h文件时需要采集的系统表标识"
+				}
+			]
+		},
+		{
+			"path": "src/include/catalog/postgres.bki",
+			"bookmarks": [
+				{
+					"line": 1,
+					"column": 44,
+					"label": "系统控制器 initdb命令启动的bootstrap过程中创建模板postgres，使用postgres.bki内的SQL创建必须的系统表"
+				}
+			]
+		},
+		{
+			"path": "src/backend/catalog/genbki.pl",
+			"bookmarks": [
+				{
+					"line": 22,
+					"column": 12,
+					"label": "系统表 perl脚本读取pg_xxx.h定义的系统表，并生成postgres.bki文件，该文件包含了bootstrap过程需要创建的所有系统表SQL"
+				}
+			]
+		},
+		{
+			"path": "src/backend/catalog/Catalog.pm",
+			"bookmarks": [
+				{
+					"line": 13,
+					"column": 16,
+					"label": "系统表 定义了Catalog的package模块用于解析pg_xxx.h的系统同表文件为perl数据结构，在genbki.pl脚本中使用"
+				}
+			]
 		}
 	]
 }

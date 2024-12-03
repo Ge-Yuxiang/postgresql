@@ -6,7 +6,7 @@ function FindFile()
 {
     read -p "Input your search file name: " file_name
     echo ${file_name}: 
-    find $project_path -wholename *${file_name}*
+    sudo find $project_path -wholename *${file_name}*
 }
 
 function ShowCynosProcess()
