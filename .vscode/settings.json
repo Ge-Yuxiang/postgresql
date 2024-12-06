@@ -121,5 +121,8 @@
             "username": "postgres",
             "password": "Aa100325"
         }
-    ]
+    ],
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
 }

@@ -189,6 +189,26 @@
 					"label": "系统表 定义了Catalog的package模块用于解析pg_xxx.h的系统同表文件为perl数据结构，在genbki.pl脚本中使用"
 				}
 			]
+		},
+		{
+			"path": "src/include/catalog/indexing.h",
+			"bookmarks": [
+				{
+					"line": 26,
+					"column": 48,
+					"label": "系统表 这里定义了系统表的索引 CatalogIndexState是ResultRelInfo的指针，复用了ResultRelInfo结构。 ResultRelInfo代表查询执行过程中该查询涉及的相关表，一般在写表时需要，如同步更新索引表等"
+				}
+			]
+		},
+		{
+			"path": "src/include/catalog/toasting.h",
+			"bookmarks": [
+				{
+					"line": 16,
+					"column": 25,
+					"label": "系统表 系统表的toast技术支持 toast用于存储表中的超大列，如图像、二进制文件等。大文件压缩保存在toast表中，主表保存toast表的索引"
+				}
+			]
 		}
 	]
 }

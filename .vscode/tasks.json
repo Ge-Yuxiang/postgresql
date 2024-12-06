@@ -62,6 +62,32 @@
                 "cwd": "${workspaceFolder}/.vscode/task_script"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Open psql",
+            "type": "shell",
+            "command": "psql",
+            "args": [
+                "-h",
+                "localhost",
+                "-p",
+                "5432",
+                "-U",
+                "postgres",
+                "-d",
+                "test"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
