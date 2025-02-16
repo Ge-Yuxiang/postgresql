@@ -145,8 +145,8 @@
 			"bookmarks": [
 				{
 					"line": 28,
-					"column": 25,
-					"label": "系统表 FormData_pg_database 系统表的结构体定义pg_xxx.h各代表不同的系统表"
+					"column": 21,
+					"label": "系统表 FormData_pg_database 系统表的结构体定义pg_xxx.h各代表不同的系统表 CATALOG宏写死了系统表的oid"
 				}
 			]
 		},
